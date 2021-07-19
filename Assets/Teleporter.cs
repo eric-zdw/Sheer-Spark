@@ -5,10 +5,10 @@ using UnityEngine;
 public class Teleporter : MonoBehaviour
 {
     public Teleporter destination;
-    public Vector3 exitPosition;
     public bool reverseControls;
     public bool reverseVelocity;
     public static float playerCooldown = 0f;
+    public static float enemyCooldown = 0f;
 
     public GameObject teleporterSparksPrefab;
     public Vector3 teleportOffset;
@@ -37,7 +37,8 @@ public class Teleporter : MonoBehaviour
             Instantiate(teleporterFlashPrefab, GameObject.FindGameObjectWithTag("GameUI").transform);
             float playerYRelativeToTeleporter = other.transform.position.y - (transform.position + teleportOffset).y;
             other.transform.position = destination.transform.position + destination.teleportOffset + new Vector3(0f, playerYRelativeToTeleporter, 0f);
-            playerCooldown = 0.5f;
+            Camera.main.transform.position = new Vector3(other.transform.position.x, other.transform.position.y, Camera.main.transform.position.z);
+            playerCooldown = 0.2f;
             if (reverseControls) {
                 CameraFollow cameraScript = Camera.main.GetComponent<CameraFollow>();
                 CameraFollow.CameraDistance *= -1f;
@@ -55,6 +56,14 @@ public class Teleporter : MonoBehaviour
             Instantiate(teleporterSparksPrefab, destination.transform.position + destination.teleportOffset, Quaternion.identity);
             StartFlash();
             destination.StartFlash();
+        }
+        else if (other.CompareTag("Enemy") && enemyCooldown <= 0) {
+            float playerYRelativeToTeleporter = other.transform.position.y - (transform.position + teleportOffset).y;
+            other.transform.position = destination.transform.position + destination.teleportOffset + new Vector3(0f, playerYRelativeToTeleporter, 0f);
+            Instantiate(teleporterSparksPrefab, destination.transform.position + destination.teleportOffset, Quaternion.identity);
+            StartFlash();
+            destination.StartFlash();
+            enemyCooldown = 0.2f;
         }
         
     }

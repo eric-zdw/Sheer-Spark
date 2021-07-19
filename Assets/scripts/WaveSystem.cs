@@ -22,8 +22,9 @@ public static class IListExtensions {
 // Preview: In Stage selection menu, with scene as background. Player goes to pregame via menu.
 // Pregame: Player character is active, before enemies have spawned. Player goes to Playing via activation powerup.
 // Playing: Enemies start spawning. Goes to postgame after clearing last wave.
-// Postgame: Level is complete. Goes to stage selection after: a) new weapon is collected; b) automatically after period of time.
-public enum GameState { Preview, Pregame, Playing, Postgame, Defeated };
+// Postgame: Level is complete. Goes to Switching after: a) new weapon is collected; b) automatically after period of time.
+// Switching: End game effects; In the process of switching scenes.
+public enum GameState { Preview, Pregame, Playing, Postgame, Switching, Defeated};
 
 public class WaveSystem : MonoBehaviour {
 
@@ -336,6 +337,8 @@ public class WaveSystem : MonoBehaviour {
 
     public IEnumerator WinPickup()
     {
+        gameState = GameState.Switching;
+        StartCoroutine(GameUIFadeOut());
         StartCoroutine(ppManager.GameEndEffects());
         //wc.LevelCompleteRoutine();
         yield return new WaitForSecondsRealtime(10f);
@@ -349,12 +352,14 @@ public class WaveSystem : MonoBehaviour {
     }
 
     public void PauseGame() {
-        WaveSystem.isPaused = true;
-        savedTimeScale = Time.timeScale;
-        Time.timeScale = 0f;
-        StartCoroutine(PauseFadeIn());
-        //pauseMenu.SetActive(true);
-        gameUI.SetActive(false);
+        if (gameState == GameState.Pregame || gameState == GameState.Playing) {
+            WaveSystem.isPaused = true;
+            savedTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            StartCoroutine(PauseFadeIn());
+            //pauseMenu.SetActive(true);
+            gameUI.SetActive(false);
+        }
     }
 
     public void UnpauseGame() {
@@ -395,5 +400,20 @@ public class WaveSystem : MonoBehaviour {
         }
 
         gameUI.GetComponent<UnityEngine.CanvasGroup>().alpha = 1f;
+    }
+    public IEnumerator GameUIFadeOut()
+    {
+        float a = 1f;
+        gameUI.GetComponent<UnityEngine.CanvasGroup>().alpha = a;
+        gameUI.SetActive(true);
+
+        while (a > 0f)
+        {
+            a -= Time.unscaledDeltaTime * 10f;
+            gameUI.GetComponent<UnityEngine.CanvasGroup>().alpha = a;
+            yield return new WaitForEndOfFrame();
+        }
+
+        gameUI.GetComponent<UnityEngine.CanvasGroup>().alpha = 0f;
     }
 }
