@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour {
 
 	public static int score = 0;
+	public static float completion = 0f;
 	public static float multiplier = 1;
 	public static float exponentPart = 0f;
 	const float basePart = 1f;
@@ -13,6 +14,9 @@ public class ScoreManager : MonoBehaviour {
 	//private PlayerBehaviour player;
 	private float multiplierVelocity = 0f;
 	const float updateInterval = 0.02f;
+
+	public int maxPowerups = 50;
+	public int maxPoints = 30000;
 
 	// Use this for initialization
 	void Start () {
@@ -45,8 +49,8 @@ public class ScoreManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+		completion = (((float)PlayerBehaviour.totalPowerups / maxPowerups) * 0.5f) + (((float)ScoreManager.score / maxPoints) * 0.5f);
 	}
 
 	public static void ResetScore() {

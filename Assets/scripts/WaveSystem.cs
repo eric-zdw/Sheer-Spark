@@ -77,6 +77,7 @@ public class WaveSystem : MonoBehaviour {
     public GameObject pauseMenu;
     public GameObject gameUI;
     public GameObject playerSpaceUI;
+    public GameObject levelEndUI;
 
     private int activeEnemies = 0;
 
@@ -340,9 +341,10 @@ public class WaveSystem : MonoBehaviour {
         gameState = GameState.Switching;
         StartCoroutine(GameUIFadeOut());
         StartCoroutine(ppManager.GameEndEffects());
+        levelEndUI.SetActive(true);
         //wc.LevelCompleteRoutine();
         yield return new WaitForSecondsRealtime(10f);
-        ReturnToMenu();
+        //ReturnToMenu();
     }
 
     public void ReturnToMenu()

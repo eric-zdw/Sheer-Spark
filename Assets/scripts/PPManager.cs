@@ -135,9 +135,10 @@ public class PPManager : MonoBehaviour {
 		Time.fixedDeltaTime = Time.timeScale / 60f;
 		Time.maximumParticleDeltaTime = Time.timeScale / 60f;
 
+		float changeSpeed = 4f;
 		while (true) {
-			ca.postExposure.value -= 3f * Time.unscaledDeltaTime;
-
+			ca.postExposure.value -= changeSpeed * Time.unscaledDeltaTime;
+			changeSpeed = Mathf.Clamp(changeSpeed - (1f * Time.unscaledDeltaTime), 0f, 5f);
 			yield return new WaitForEndOfFrame();
 		}
 	}

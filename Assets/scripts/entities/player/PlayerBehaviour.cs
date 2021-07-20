@@ -24,6 +24,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     public int[] powerupEnergy;
     public int maxPowerupEnergy = 6;
+    public static int totalPowerups = 0;
 
     private MeshRenderer mesh;
     public Material defaultColour;
@@ -85,6 +86,7 @@ public class PlayerBehaviour : MonoBehaviour {
         util = utilitySlot.GetComponentInChildren<Utility>();
         
         powerupEnergy = new int[6];
+        totalPowerups = 0;
 
         mesh = GetComponent<MeshRenderer>();
 
@@ -215,6 +217,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
         powerupEnergy[index] = Mathf.Clamp(powerupEnergy[index] + 1, 0, maxPowerupEnergy);
         energyPanel.UpdateEnergyMeters();
+        totalPowerups++;
 
         Color radialColor = new Color(powerColors[index].r, powerColors[index].g, powerColors[index].b, 0.25f);
         radialBar.GetComponent<UnityEngine.UI.Image>().color = (powerColors[index]);
