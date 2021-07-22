@@ -41,6 +41,7 @@ public class LevelEndUI : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         StartCoroutine(FadeInBG(blackBG, 0f, 0.5f, 0.1f));
         yield return new WaitForSecondsRealtime(2.5f);
+        Cursor.visible = true;
         StartCoroutine(FadeInText(levelTitle));
         yield return new WaitForSecondsRealtime(0.6f);
         StartCoroutine(FadeInText(completeText));
@@ -48,9 +49,9 @@ public class LevelEndUI : MonoBehaviour
         StartCoroutine(FadeInStats());
         yield return new WaitForSecondsRealtime(2f);
         StartCoroutine(FadeInCanvasGroup(completionPanel));
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.8f);
         StartCoroutine(FillCompletionBar());
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(2.5f);
         StartCoroutine(FadeInCanvasGroup(buttonPanel));
         StartCoroutine(FadeInBG(blackBG, 0.5f, 1f, 0.1f));
     }
@@ -96,7 +97,8 @@ public class LevelEndUI : MonoBehaviour
         while (true)
         {
             bar.fillAmount = Mathf.Lerp(bar.fillAmount, ScoreManager.completion, 0.04f);
-            percentText.rectTransform.anchorMax = new Vector2(bar.fillAmount, percentText.rectTransform.anchorMax.y);
+            float percentTextAnchor = Mathf.Clamp(bar.fillAmount, 0.066f, 1f);
+            percentText.rectTransform.anchorMax = new Vector2(percentTextAnchor, percentText.rectTransform.anchorMax.y);
             percentText.text = string.Format("{0:P1}", bar.fillAmount);
             yield return new WaitForEndOfFrame();
         }
@@ -109,5 +111,10 @@ public class LevelEndUI : MonoBehaviour
             StartCoroutine(FadeInText(t));
             yield return new WaitForSecondsRealtime(0.2f);
         }
+    }
+
+    public IEnumerator NextLevel()
+    {
+        yield return new WaitForEndOfFrame();
     }
 }

@@ -50,7 +50,9 @@ public class ScoreManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		completion = (((float)PlayerBehaviour.totalPowerups / maxPowerups) * 0.5f) + (((float)ScoreManager.score / maxPoints) * 0.5f);
+		float powerupComponent = Mathf.Clamp(((float)PlayerBehaviour.totalPowerups / maxPowerups) * 0.5f, 0f, 0.5f);
+		float scoreComponent = Mathf.Clamp(((float)ScoreManager.score / maxPoints) * 0.5f, 0f, 0.5f);
+		completion = powerupComponent + scoreComponent;
 	}
 
 	public static void ResetScore() {

@@ -16,6 +16,7 @@ public class UpdateParticleRotation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ps.startRotation3D = true;
-		ps.startRotationZ = player.transform.rotation.eulerAngles.z;
+		float rot = Mathf.Deg2Rad * player.transform.rotation.eulerAngles.z;
+		ps.startRotationZ = rot;
 	}
 }

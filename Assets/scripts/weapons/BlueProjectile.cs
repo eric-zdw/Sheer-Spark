@@ -135,6 +135,7 @@ public class BlueProjectile : Projectile {
         {
             other.gameObject.GetComponent<Enemy>().getDamage(damage * 0.6f);
 			ExplodeSmall();
+            other.GetComponent<Rigidbody>().velocity *= 0.8f;
             other.GetComponent<Rigidbody>().AddForce(Vector3.Normalize(other.transform.position - player.transform.position) * 600f);
             Camera.main.GetComponent<CameraFollow>().AddNoise(0.2f);
         }
