@@ -9,7 +9,6 @@ public abstract class BossEnemy : Enemy
 
     [SerializeField]
 
-    protected GameObject healthBar;
     protected int powerupRoll;
     
     private Color enemyColor;
@@ -31,16 +30,9 @@ public abstract class BossEnemy : Enemy
     protected override void Initialize()
     {
         base.Initialize();
-        //create health bar
-        healthBar = Instantiate(smallEnemyData.healthBarPrefab);
-        healthBar.GetComponent<HealthBar>().setTarget(gameObject);
         health = maxHealth;
 
         rb = GetComponent<Rigidbody>();
-
-        powerupRoll = Random.Range(0, 6);
-        enemyColor = smallEnemyData.powerupColors[powerupRoll];
-        enemyColorHDR = smallEnemyData.powerupColorsHDR[powerupRoll];
         //todo: change MatBlock to color
 
         mainMPB = new MaterialPropertyBlock();
@@ -52,12 +44,12 @@ public abstract class BossEnemy : Enemy
         
         foreach (MeshRenderer o in outlineMeshes)
         {
-            o.material = smallEnemyData.outlines[powerupRoll];
+            //o.material = smallEnemyData.outlines[powerupRoll];
         }
         
         foreach (MeshRenderer s in seeThroughMeshes)
         {
-            s.material = smallEnemyData.seeThroughMats[powerupRoll];
+            //s.material = smallEnemyData.seeThroughMats[powerupRoll];
         }
 
         damageFlashMPB = new MaterialPropertyBlock();
@@ -87,10 +79,9 @@ public abstract class BossEnemy : Enemy
     }
 
     protected virtual void DefeatRoutine() {
-        Destroy(healthBar);
         Camera.main.GetComponent<CameraFollow>().AddNoise(5f);
-        Instantiate(smallEnemyData.powerups[powerupRoll], transform.position, Quaternion.identity);
-		Instantiate(smallEnemyData.deathExplosions[powerupRoll], transform.position, transform.rotation);
+        //Instantiate(smallEnemyData.powerups[powerupRoll], transform.position, Quaternion.identity);
+		//Instantiate(smallEnemyData.deathExplosions[powerupRoll], transform.position, transform.rotation);
         ScoreManager.IncreaseScore(scoreValue);
 		Destroy(gameObject);
     }
@@ -98,7 +89,7 @@ public abstract class BossEnemy : Enemy
 	private IEnumerator DelayedDeathRoutine() {
         isDelayedDeath = true;
 		float duration = 2.5f;
-		Instantiate(smallEnemyData.delayedDeathPrefab, transform.position, Quaternion.identity);
+		//Instantiate(smallEnemyData.delayedDeathPrefab, transform.position, Quaternion.identity);
 		rb.AddForce(Vector3.up * 1000f);
         rb.useGravity = true;
 		while (duration > 0f) {
