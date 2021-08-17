@@ -7293,6 +7293,15 @@ MonoBehaviour:
   scoreValue: 50000
   smallEnemyData: {fileID: 11400000, guid: 9d3ac5ed681911547b5249874e595501, type: 2}
   powerupChance: 100
+  mainMeshes:
+  - {fileID: 2334474667283042494}
+  outlineMeshes:
+  - {fileID: 2333738893385382218}
+  - {fileID: 8838747396794155109}
+  seeThroughMeshes:
+  - {fileID: 2334365181915720636}
+  damageFlashMeshes:
+  - {fileID: 2334359830430452160}
   dashExplosion: {fileID: 1132967370857014, guid: 2b3b314a2e92d104b90c4b53ee4d7a62,
     type: 3}
 --- !u!135 &8862813814399155213

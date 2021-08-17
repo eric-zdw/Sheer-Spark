@@ -46,7 +46,7 @@ public class OrangeProjectileHitbox : MonoBehaviour {
             if (other.GetComponent<Enemy>() is SmallEnemy)
             {
                 Vector3 direction = other.transform.position - transform.position;
-                GameObject hitSpark = other.GetComponent<SmallEnemy>().SpawnHitSpark(other.transform.position, Quaternion.identity, damage, 2f * damage);
+                GameObject hitSpark = other.GetComponent<SmallEnemy>().SpawnHitSpark(other.transform.position, Quaternion.identity, damage, 1.5f * damage);
                 hitSpark.transform.right = other.transform.position - transform.position;
                 hitSpark.transform.rotation *= Quaternion.Euler(0f, 0f, -90f);
             }

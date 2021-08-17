@@ -86,7 +86,7 @@ public abstract class SmallEnemy : Enemy
         hitSpark.SetInt(Shader.PropertyToID("Number of Particles"), (int)(damage * Random.Range(1.6f, 2.4f)));
         hitSpark.SetGradient(Shader.PropertyToID("Color"), smallEnemyData.hitSparkGradients[powerupRoll]);
         hitSpark.SetFloat(Shader.PropertyToID("Spread"), spread * Random.Range(0.8f, 1.2f));
-        hitSpark.SetVector2(Shader.PropertyToID("Magnitude"), new Vector2(damage * 0.05f, 25f + damage * 4f));
+        hitSpark.SetVector2(Shader.PropertyToID("Magnitude"), new Vector2(damage * 0.05f, 40f + damage * 3f));
         hitSpark.SetVector2(Shader.PropertyToID("Lifetime"), new Vector2(damage * 0.005f, 0.6f + damage * 0.01f));
         return hitSpark.gameObject;
     }

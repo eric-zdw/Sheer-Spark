@@ -6,6 +6,7 @@ using UnityEngine;
 public class SmallEnemyScriptableObject : ScriptableObject
 {
     public GameObject[] deathExplosions;
+    public GameObject[] deathExplosionsBig;
     public Color[] powerupColors;
 
     public GameObject[] powerups;

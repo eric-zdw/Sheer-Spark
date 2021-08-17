@@ -19,6 +19,13 @@ MonoBehaviour:
   - {fileID: 1056517570023220, guid: 9475927b474b208468a4e14d51879518, type: 3}
   - {fileID: 1056517570023220, guid: 07ef49889075ffe4a8b7a328f83eab02, type: 3}
   - {fileID: 1056517570023220, guid: d865ba5571cd9464eb4d8856f8283eb5, type: 3}
+  deathExplosionsBig:
+  - {fileID: 1276265848024092, guid: ce7c317800fad2946aeb64b585c57e5a, type: 3}
+  - {fileID: 1775100572780514, guid: 95dd34b8988eda74c8eb5676e4704ad6, type: 3}
+  - {fileID: 1752014190355960, guid: 43697730af1433b499333679ad510462, type: 3}
+  - {fileID: 1192514712049200, guid: cd78ab72268afce469b770f0435f24c8, type: 3}
+  - {fileID: 1881181869773268, guid: eedfa8765a1ad8d40b9e8665dd4f8804, type: 3}
+  - {fileID: 1560179891503674, guid: 587d028cdcf189b459169e0d60070e4f, type: 3}
   powerupColors:
   - {r: 1, g: 0.2509804, b: 0.2509804, a: 1}
   - {r: 1, g: 0.5019608, b: 0.2509804, a: 1}

@@ -831,39 +831,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e5e847fd6b04034d835517a7d340a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  scoreValue: 0
-  healthBar: {fileID: 1400260174968392, guid: 23a2a997a2b7d514399a54b225354627, type: 3}
-  newHealth: 600
-  powerups:
-  - {fileID: 1881794500740252, guid: bbc053c3db647814abff2f97cba62aa1, type: 3}
-  - {fileID: 1881794500740252, guid: fb59b42309cdf6a4492c4862a5c006d3, type: 3}
-  - {fileID: 1567947007607036, guid: d8098eb2e9723934193476f4fd1e5264, type: 3}
-  - {fileID: 1567947007607036, guid: d02f408e9547deb4ca1396e10c5a0941, type: 3}
-  - {fileID: 1742119026110102, guid: 13dd15378af3c8241b2283df653140c1, type: 3}
-  - {fileID: 1881794500740252, guid: 1c203643c7da0a446a036d73c09ae274, type: 3}
-  colours:
-  - {fileID: 2100000, guid: e8a50782ef8a0124bb2190e2883eba9b, type: 2}
-  - {fileID: 2100000, guid: 76a2c5afbf0d32b4b8f125d374778e5f, type: 2}
-  - {fileID: 2100000, guid: ed81c949506aebb4586b807bc89896e6, type: 2}
-  - {fileID: 2100000, guid: 7289c78480a757447959172c69515138, type: 2}
-  - {fileID: 2100000, guid: d9f0d67efcb9a674da5c611cbffc1801, type: 2}
-  - {fileID: 2100000, guid: 8a519e9eb3ff1a74ba80162195c7b123, type: 2}
-  seeThroughs:
-  - {fileID: 2100000, guid: d845392aa709f9e458149e8e03f3e83d, type: 2}
-  - {fileID: 2100000, guid: bb85f7dfb8fb774449e67323e9a09d09, type: 2}
-  - {fileID: 2100000, guid: 7f57abd2d14599a40b9cc6029ef94557, type: 2}
-  - {fileID: 2100000, guid: edc992d98b7cebb43a56d7693faa6066, type: 2}
-  - {fileID: 2100000, guid: bbcda083515deb04ebe1d0e0a59b78c8, type: 2}
-  - {fileID: 2100000, guid: a10f8b35ac8ca8c45945127933099f00, type: 2}
-  explosions:
-  - {fileID: 1276265848024092, guid: ce7c317800fad2946aeb64b585c57e5a, type: 3}
-  - {fileID: 1775100572780514, guid: 95dd34b8988eda74c8eb5676e4704ad6, type: 3}
-  - {fileID: 1752014190355960, guid: 43697730af1433b499333679ad510462, type: 3}
-  - {fileID: 1192514712049200, guid: cd78ab72268afce469b770f0435f24c8, type: 3}
-  - {fileID: 1881181869773268, guid: eedfa8765a1ad8d40b9e8665dd4f8804, type: 3}
-  - {fileID: 1560179891503674, guid: 587d028cdcf189b459169e0d60070e4f, type: 3}
-  damagedMaterial: {fileID: 2100000, guid: fa314a085e2f51f42b00eb0c8820a911, type: 2}
+  maxHealth: 300
+  scoreValue: 300
+  smallEnemyData: {fileID: 11400000, guid: 9d3ac5ed681911547b5249874e595501, type: 2}
+  powerupChance: 100
+  mainMeshes:
+  - {fileID: 23417330783473278}
+  - {fileID: 23763488709596220}
+  - {fileID: 23796758826724312}
+  - {fileID: 23243443547985642}
+  - {fileID: 23593038162286250}
+  outlineMeshes:
+  - {fileID: 23037908875547070}
+  seeThroughMeshes:
+  - {fileID: 23292236080445268}
+  - {fileID: 23529729934568494}
+  - {fileID: 23186786217253032}
+  - {fileID: 23014001135975300}
+  - {fileID: 23762448531804878}
+  damageFlashMeshes:
+  - {fileID: 23128275669310364}
   YLimit: 0
   isTethered: 0
   moveSpeed: 800
