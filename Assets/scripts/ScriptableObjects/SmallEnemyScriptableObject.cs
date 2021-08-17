@@ -20,4 +20,9 @@ public class SmallEnemyScriptableObject : ScriptableObject
     public GameObject healthBarPrefab;
 
     public GameObject delayedDeathPrefab;
+
+    public GameObject hitSparkPrefab;
+
+    [GradientUsage(true)]
+    public Gradient[] hitSparkGradients;
 }

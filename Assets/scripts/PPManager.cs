@@ -80,7 +80,7 @@ public class PPManager : MonoBehaviour {
 
 	public IEnumerator ChangePP() {
 		Time.timeScale = ppSlowTimeScale;
-		Time.fixedDeltaTime = Time.timeScale / 60f;
+		//Time.fixedDeltaTime = Time.timeScale / 60f;
 		Time.maximumParticleDeltaTime = Time.timeScale / 60f;
 
 		float timer = 0f;
@@ -91,7 +91,7 @@ public class PPManager : MonoBehaviour {
 				timer -= Time.unscaledDeltaTime;
 				while (timer < 0f) {
 					Time.timeScale *= ppTimeIncreaseRate;
-					Time.fixedDeltaTime = Time.timeScale / 60f;
+					//Time.fixedDeltaTime = Time.timeScale / 60f;
 					Time.maximumParticleDeltaTime = Time.timeScale / 60f;
 
 					print(Time.timeScale);
@@ -106,7 +106,7 @@ public class PPManager : MonoBehaviour {
 					timer += 0.02f;
 				}
 			}
-			yield return new WaitForFixedUpdate();
+			yield return new WaitForSecondsRealtime(0.01f);
 		}
 		
 	}
@@ -132,7 +132,7 @@ public class PPManager : MonoBehaviour {
 		ca.postExposure.value = 6f;
 
 		Time.timeScale = 0.022f;
-		Time.fixedDeltaTime = Time.timeScale / 60f;
+		//Time.fixedDeltaTime = Time.timeScale / 60f;
 		Time.maximumParticleDeltaTime = Time.timeScale / 60f;
 
 		float changeSpeed = 4f;
@@ -146,7 +146,7 @@ public class PPManager : MonoBehaviour {
 	static public void ResetTimeScale()
     {
 		Time.timeScale = ppDefaultTimeScale;
-		Time.fixedDeltaTime = ppDefaultTimeScale / ppFixedScale;
+		//Time.fixedDeltaTime = ppDefaultTimeScale / ppFixedScale;
 		Time.maximumParticleDeltaTime = ppDefaultTimeScale / ppFixedScale;
 	}
 }

@@ -43,6 +43,13 @@ public class OrangeProjectileHitbox : MonoBehaviour {
 
             //distance modifier reduces damage up to distfactor%. If hit, an enemy will always take at least (1 - distfactor)% damage.
             other.GetComponent<Enemy>().getDamage(damage * (1 - ((distance / radius) * distanceFactor)));
+            if (other.GetComponent<Enemy>() is SmallEnemy)
+            {
+                Vector3 direction = other.transform.position - transform.position;
+                GameObject hitSpark = other.GetComponent<SmallEnemy>().SpawnHitSpark(other.transform.position, Quaternion.identity, damage, 2f * damage);
+                hitSpark.transform.right = other.transform.position - transform.position;
+                hitSpark.transform.rotation *= Quaternion.Euler(0f, 0f, -90f);
+            }
 			//print("distance: " + distance + ", radius: " + radius + ", percentage: " + (1 - (distance / radius)) + ", damage: " + damage * (1 - ((distance / radius) * 0.5f)));
 
             other.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, radius, 0f);

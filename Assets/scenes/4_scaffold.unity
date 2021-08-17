@@ -43118,7 +43118,7 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultWeapon
       value: 
-      objectReference: {fileID: 1313234464062574, guid: 491ce2bb283bd424c8ef07822c704d80,
+      objectReference: {fileID: 1014158004818090, guid: a6f5b35373fbcbb40922287fe5fab9a1,
         type: 3}
     - target: {fileID: 114921439660345688, guid: cbeabda06ab33c54f86b666525af6d98,
         type: 3}
@@ -64061,7 +64061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1802105365686996, guid: 45eb1b77d6c44944bb23fdc1b7f30ecd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4186154077604320, guid: 45eb1b77d6c44944bb23fdc1b7f30ecd, type: 3}
       propertyPath: m_RootOrder

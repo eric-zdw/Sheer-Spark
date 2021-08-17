@@ -12,6 +12,7 @@ public class BlasterProjectile : Projectile {
         projectileSpeed = 90f;
         lifeTime = 10f;
         damage = 12f;
+        GetComponent<Rigidbody>().AddForce(transform.right * 90f, ForceMode.VelocityChange);
     }
 
     // Update is called once per frame
@@ -20,8 +21,8 @@ public class BlasterProjectile : Projectile {
             Destroy(gameObject);
         else
         {
-            //Propogate();
-            CheckLinecastCollision();
+            //PropogateRigidbody();
+            //CheckLinecastCollision();
             lifeTime -= Time.deltaTime;
         }
             
@@ -38,6 +39,17 @@ public class BlasterProjectile : Projectile {
         }
         else
             transform.position += transform.right * projectileSpeed * Time.deltaTime;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            collision.collider.GetComponent<Enemy>().getDamage(damage);
+            if (collision.collider.GetComponent<Enemy>() is SmallEnemy)
+                collision.collider.gameObject.GetComponent<SmallEnemy>().SpawnHitSpark(collision.GetContact(0).point, transform.rotation, damage, 15f);
+        }
+        Explode();
     }
 
     void Explode()
