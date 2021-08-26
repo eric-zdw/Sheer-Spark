@@ -285,7 +285,7 @@ VisualEffectResource:
       HAS_STRIPS\n            const StripData stripData = GetStripDataFromParticleIndex(index,
       PARTICLE_PER_STRIP_COUNT);\n            InitStripAttributes(index, attributes,
       stripData);\n#endif\n\t\t\t\n\t\t\t{\n\t\t\t    Drag_0( /*inout */attributes.velocity,
-      attributes.mass, (float)5, deltaTime_a);\n\t\t\t}\n\t\t\tGravity( /*inout */attributes.velocity,
+      attributes.mass, (float)3, deltaTime_a);\n\t\t\t}\n\t\t\tGravity( /*inout */attributes.velocity,
       Force_b, deltaTime_a);\n\t\t\tEulerIntegration( /*inout */attributes.position,
       attributes.velocity, deltaTime_a);\n\t\t\tAge( /*inout */attributes.age, deltaTime_a);\n\t\t\tReap(attributes.age,
       attributes.lifetime,  /*inout */attributes.alive);\n\t\t\t\n\n\n\t\t\tif (attributes.alive)\n\t\t\t{\n\t\t\t\tattributeBuffer.Store3((index
@@ -314,7 +314,7 @@ VisualEffectResource:
       HAS_STRIPS\n        const StripData stripData = GetStripDataFromParticleIndex(index,
       PARTICLE_PER_STRIP_COUNT);\n        InitStripAttributes(index, attributes,
       stripData);\n#endif\n\t\t\n\t\t{\n\t\t    Drag_0( /*inout */attributes.velocity,
-      attributes.mass, (float)5, deltaTime_a);\n\t\t}\n\t\tGravity( /*inout */attributes.velocity,
+      attributes.mass, (float)3, deltaTime_a);\n\t\t}\n\t\tGravity( /*inout */attributes.velocity,
       Force_b, deltaTime_a);\n\t\tEulerIntegration( /*inout */attributes.position,
       attributes.velocity, deltaTime_a);\n\t\tAge( /*inout */attributes.age, deltaTime_a);\n\t\tReap(attributes.age,
       attributes.lifetime,  /*inout */attributes.alive);\n\t\t\n\n\t\tattributeBuffer.Store3((index
@@ -1115,7 +1115,7 @@ VisualEffectResource:
         - m_ExpressionIndex: 6
           m_Value: 0
         - m_ExpressionIndex: 24
-          m_Value: 5
+          m_Value: 3
       m_Vector2f:
         m_Array:
         - m_ExpressionIndex: 1
@@ -1178,17 +1178,17 @@ VisualEffectResource:
             - serializedVersion: 3
               time: 0
               value: 0.5
-              inSlope: 19.5
-              outSlope: 19.5
+              inSlope: 14.5
+              outSlope: 14.5
               tangentMode: 34
               weightedMode: 0
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
               time: 1
-              value: 20
-              inSlope: 19.5
-              outSlope: 19.5
+              value: 15
+              inSlope: 14.5
+              outSlope: 14.5
               tangentMode: 34
               weightedMode: 0
               inWeight: 0
@@ -2446,7 +2446,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 5
+      m_SerializableObject: 3
     m_Space: 2147483647
   m_Property:
     name: dragCoefficient
@@ -3017,7 +3017,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":0.0,"value":0.5,"inTangent":19.5,"outTangent":19.5,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":1.0,"value":20.0,"inTangent":19.5,"outTangent":19.5,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":0.0,"value":0.5,"inTangent":14.5,"outTangent":14.5,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false},{"time":1.0,"value":15.0,"inTangent":14.5,"outTangent":14.5,"tangentMode":0,"leftTangentMode":1,"rightTangentMode":1,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: Scale_y

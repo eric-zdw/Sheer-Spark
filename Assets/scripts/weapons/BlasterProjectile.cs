@@ -11,7 +11,7 @@ public class BlasterProjectile : Projectile {
     void Start() {
         projectileSpeed = 90f;
         lifeTime = 10f;
-        damage = 12f;
+        damage = 15f;
         GetComponent<Rigidbody>().AddForce(transform.right * 90f, ForceMode.VelocityChange);
     }
 

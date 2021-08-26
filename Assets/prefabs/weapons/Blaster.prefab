@@ -43,8 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd02cd851a6e49048b91e898acdcaccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyCost: 0
   projectile: {fileID: 1453142070821372, guid: f18e9294800c8f343beb7ade49728f19, type: 3}
-  projectile2: {fileID: 1453142070821372, guid: 7c2b80574786a0447b0479c298e1c113,
+  projectile2: {fileID: 8717144315331473789, guid: 2f6b5207ca16eed48896bb147509f0aa,
     type: 3}
-  bFireRate: 0.2
-  secondaryRate: 0.9
+  damage: 11
+  bFireRate: 0.3
+  secondaryRate: 2
+  maxHeatDamageMulti: 0.8
+  maxHeatFireRateMulti: 0.9

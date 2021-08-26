@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: P2W1
   m_EditorClassIdentifier: 
   enemies:
-  - enemyEntry: {fileID: 11400000, guid: 9045df4e8d47ac94b8dfb15724fcf2eb, type: 2}
-    enemyCount: 12
+  - enemyEntry: {fileID: 11400000, guid: 12e1e94c6ff2b8d43878c7ade527799d, type: 2}
+    enemyCount: 1
   - enemyEntry: {fileID: 11400000, guid: ddfeece98f05e9f409c54d984e394b0e, type: 2}
-    enemyCount: 12
+    enemyCount: 2
   initialSpawns: 3
   spawnRate: 8
   maxActiveEnemies: 8
   spawnInOrder: 0
-  isBossWave: 0
+  isBossWave: 1

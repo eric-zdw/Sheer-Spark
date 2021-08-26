@@ -6,6 +6,7 @@ public class Blaster : Weapon {
 
     public GameObject projectile;
     public GameObject projectile2;
+    public float damage = 12f;
     private Camera cam;
     private Vector2 mousePosition;
     private float angle;
@@ -34,13 +35,46 @@ public class Blaster : Weapon {
     {
         if (GetCooldown() <= 0)
         {
+            float realDamage = damage * (1f + (maxHeatDamageMulti * WaveSystem.player.GetHeatFactor(EnergyColor.White)));
             Instantiate(projectile, transform.position + (Vector3.Normalize((Vector3)mousePosition - transform.position) * 0.5f), Quaternion.Euler(0, 0, angle + Random.Range(-1f, 1f)));
-            //SetCooldown(bFireRate / (1f + (maxHeatFireRateMulti * player.GetHeatFactor(EnergyColor.White))));
-            SetCooldown(bFireRate);
+            SetCooldown(bFireRate / (1f + (maxHeatFireRateMulti * WaveSystem.player.GetHeatFactor(EnergyColor.White))));
         }
     }
 
     public override void Fire2()
     {
+        bool hasEnergy = true;
+        for (int i = 0; i < 6; i++)
+        {
+            if (WaveSystem.player.powerupEnergy[i] < 2)
+            {
+                hasEnergy = false;
+            }
+        }
+
+        if (GetCooldown() <= 0 && hasEnergy)
+        {
+            float realDamage = damage * (1f + (maxHeatDamageMulti * WaveSystem.player.GetHeatFactor(EnergyColor.White)));
+            Instantiate(projectile2, transform.position, Quaternion.identity);
+            for (int i = 0; i < 6; i++)
+            {
+                WaveSystem.player.powerupEnergy[i] -= 3;
+                WaveSystem.player.energyPanel.UpdateEnergyMeters();
+            }
+            StartCoroutine(Freeze());
+            SetCooldown(secondaryRate / (1f + (maxHeatFireRateMulti * WaveSystem.player.GetHeatFactor(EnergyColor.White))));
+        }
+    }
+
+    public IEnumerator Freeze()
+    {
+        float timer = 0.6f;
+
+        while (timer > 0f)
+        {
+            WaveSystem.player.GetComponent<Rigidbody>().velocity *= 0f;
+            timer -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

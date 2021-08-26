@@ -17,6 +17,9 @@ public class PurpleBoss : BossEnemy
     private float tetheredCheck = 0.05f;
     private float tetheredTimer;
 
+	public GameObject missilePrefab;
+	public GameObject beamPrefab;
+
 	public GameObject node;
 	private List<GameObject> path;
 
@@ -33,12 +36,14 @@ public class PurpleBoss : BossEnemy
 
     void Start()
 	{
+		Initialize();
 		player = GameObject.FindGameObjectWithTag("Player");
 		rb = GetComponent<Rigidbody>();
 
 		StartCoroutine(CorrectRotation());
 		StartCoroutine(GlowRoutine());
-		//ActivateHealthBar();
+		StartCoroutine(AttackSchedule());
+		ActivateHealthBar();
     }
 
 	void FixedUpdate()
@@ -60,6 +65,111 @@ public class PurpleBoss : BossEnemy
             collision.gameObject.GetComponent<PlayerBehaviour>().takeDamage(1);
             getDamage(100);
         }
+    }
+
+	private IEnumerator AttackSchedule()
+    {
+        int healthState = 0;
+		float attackTimer = 10f;
+
+		while (true)
+        {
+			if (health >= maxHealth * 0.666f)
+            {
+				healthState = 0;
+            }
+			else if (health >= maxHealth * 0.333f)
+            {
+				healthState = 1;
+            }
+			else
+            {
+				healthState = 2;
+            }
+
+			attackTimer -= Time.deltaTime;
+			if (attackTimer <= 0f)
+            {
+				if (healthState == 0)
+				{
+					int choice = UnityEngine.Random.Range(0, 2);
+					if (choice == 0)
+                    {
+						StartCoroutine(MissileAttack());
+                    }
+					else if (choice == 1)
+					{
+						StartCoroutine(BigBeamAttack());
+					}
+
+					attackTimer += 10f;
+				}
+				else if (healthState == 1)
+                {
+					int choice = UnityEngine.Random.Range(0, 2);
+					if (choice == 0)
+					{
+						StartCoroutine(MissileAttack());
+					}
+					else if (choice == 1)
+                    {
+						StartCoroutine(BigBeamAttack());
+                    }
+
+					attackTimer += 8f;
+				}
+				else
+				{
+					int choice = UnityEngine.Random.Range(0, 2);
+					if (choice == 0)
+					{
+						StartCoroutine(MissileAttack());
+					}
+					else if (choice == 1)
+					{
+						StartCoroutine(BigBeamAttack());
+					}
+
+					attackTimer += 6f;
+                }
+			}
+
+			yield return new WaitForFixedUpdate();
+        }
+    }
+
+	IEnumerator MissileAttack()
+    {
+		//spinup phase
+		float timer = 3f;
+		while (timer > 0f)
+        {
+			GetComponent<Rigidbody>().AddTorque(Vector3.up * 80000f * Time.deltaTime);
+			timer -= Time.deltaTime;
+			yield return new WaitForFixedUpdate();
+        }
+
+		//attack phase
+		timer = 2f;
+		float missileTimer = 0f;
+		while (timer > 0f)
+        {
+			GetComponent<Rigidbody>().AddTorque(Vector3.up * 80000f * Time.deltaTime);
+			if (missileTimer <= 0f)
+            {
+				Instantiate(missilePrefab, transform.position, Quaternion.identity);
+				missileTimer += 0.2f;
+			}
+			timer -= Time.deltaTime;
+			missileTimer -= Time.deltaTime;
+			yield return new WaitForFixedUpdate();
+        }
+    }
+
+	IEnumerator BigBeamAttack()
+    {
+		Instantiate(beamPrefab, transform.position, Quaternion.identity);
+		yield return new WaitForFixedUpdate();
     }
 
     void Explode()
