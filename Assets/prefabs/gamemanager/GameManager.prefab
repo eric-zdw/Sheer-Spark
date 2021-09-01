@@ -1021,6 +1021,7 @@ GameObject:
   - component: {fileID: 222092314633019452}
   - component: {fileID: 114691147894773650}
   - component: {fileID: 114345778468140480}
+  - component: {fileID: 8290041545147826097}
   m_Layer: 5
   m_Name: DashIndicatorPanel
   m_TagString: Untagged
@@ -1121,6 +1122,18 @@ MonoBehaviour:
   bg3: {fileID: 7569098948637824637}
   bg4: {fileID: 8592229013077453508}
   bg5: {fileID: 2483203787591288483}
+--- !u!225 &8290041545147826097
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184724190881328}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1212600798792470
 GameObject:
   m_ObjectHideFlags: 0
@@ -7388,6 +7401,7 @@ MonoBehaviour:
   projectile: {fileID: 1453142070821372, guid: f18e9294800c8f343beb7ade49728f19, type: 3}
   projectile2: {fileID: 1453142070821372, guid: 7c2b80574786a0447b0479c298e1c113,
     type: 3}
+  damage: 12
   bFireRate: 0.11
   secondaryRate: 0.9
   maxHeatDamageMulti: 1

@@ -50,5 +50,5 @@ MonoBehaviour:
   damage: 11
   bFireRate: 0.3
   secondaryRate: 2
-  maxHeatDamageMulti: 0.8
-  maxHeatFireRateMulti: 0.9
+  maxHeatDamageMulti: 0.414214
+  maxHeatFireRateMulti: 0.414214

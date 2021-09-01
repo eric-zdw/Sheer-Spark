@@ -79,12 +79,14 @@ public abstract class BossEnemy : Enemy
     }
 
     protected virtual void DefeatRoutine() {
-        Camera.main.GetComponent<CameraFollow>().AddNoise(5f);
+        //Camera.main.GetComponent<CameraFollow>().AddNoise(5f);
         //Instantiate(smallEnemyData.powerups[powerupRoll], transform.position, Quaternion.identity);
 		//Instantiate(smallEnemyData.deathExplosions[powerupRoll], transform.position, transform.rotation);
-        ScoreManager.IncreaseScore(scoreValue);
-		Destroy(gameObject);
+        //ScoreManager.IncreaseScore(scoreValue);
+        StartCoroutine(BossExplode());
     }
+
+    protected abstract IEnumerator BossExplode();
 
 	private IEnumerator DelayedDeathRoutine() {
         isDelayedDeath = true;
@@ -99,7 +101,7 @@ public abstract class BossEnemy : Enemy
         DefeatRoutine();
 	}
 
-    IEnumerator FlashWhite() {
+    protected IEnumerator FlashWhite() {
 		float colorValue = 3f;
 		Color newColor = new Color(colorValue, colorValue, colorValue, 1);
 		while (colorValue > 0f) {

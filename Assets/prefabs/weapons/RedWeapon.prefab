@@ -47,8 +47,8 @@ MonoBehaviour:
   projectile: {fileID: 1453142070821372, guid: 616123c487d87b649bf90de80ea9b0bf, type: 3}
   bFireRate1: 1.5
   bFireRate2: 0.3
-  maxHeatDamageMulti: 0.13
-  maxHeatFireRateMulti: 0.15
+  maxHeatDamageMulti: 0.0940972
+  maxHeatFireRateMulti: 0.1881944
   maxHeatRadiusMulti: 0.1
   damage: 8
   shotSpread: 1

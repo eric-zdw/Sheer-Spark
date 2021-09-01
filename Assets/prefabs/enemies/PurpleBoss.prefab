@@ -1838,7 +1838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badfc14b4a4d7124fa1a3da0badd8618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5000
+  maxHealth: 2000
   scoreValue: 0
   powerupRoll: 0
   mainMeshes:
@@ -1861,3 +1861,7 @@ MonoBehaviour:
   iterationsPerFrame: 8
   neighbourAvoidanceWeight: 1
   neighbourAvoidanceRadius: 5
+  explosionPrefab: {fileID: 1056517570023220, guid: d865ba5571cd9464eb4d8856f8283eb5,
+    type: 3}
+  explosionBigPrefab: {fileID: 1560179891503674, guid: 587d028cdcf189b459169e0d60070e4f,
+    type: 3}

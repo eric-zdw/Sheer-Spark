@@ -22,7 +22,7 @@ public class DashIndicatorPanel : MonoBehaviour {
 
 	private float red = 0f;
 	private float alpha = 0.5f;
-	private float fadeDelay = 0.4f; 
+	private float fadeDelay = 0.8f; 
 
 	private float totalPixels;
 	private float lerpFill = 5f;
@@ -66,7 +66,7 @@ public class DashIndicatorPanel : MonoBehaviour {
 		// non-full dash
 		if (percent < 1f) {
 			alpha = 0.5f;
-			fadeDelay = 0.4f;
+			fadeDelay = 0.8f;
 
 			if (percent < 0.20f) {
 				if (dashBoost) red = 0.2f;
@@ -88,15 +88,16 @@ public class DashIndicatorPanel : MonoBehaviour {
 		}
 		color = new Color(1f, red, red, alpha);
 
+		GetComponent<CanvasGroup>().alpha = alpha;
 		dash1.color = color;
 		dash2.color = color;
 		dash3.color = color;
 		dash4.color = color;
 		dash5.color = color;
-		bg1.color = color * 0.5f;
-		bg2.color = color * 0.5f;
-		bg3.color = color * 0.5f;
-		bg4.color = color * 0.5f;
-		bg5.color = color * 0.5f;
+		bg1.color = color * 0.4f;
+		bg2.color = color * 0.4f;
+		bg3.color = color * 0.4f;
+		bg4.color = color * 0.4f;
+		bg5.color = color * 0.4f;
 	}
 }

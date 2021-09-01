@@ -31,6 +31,9 @@ public class PurpleBoss : BossEnemy
 	public float neighbourAvoidanceWeight = 1f;
 	public float neighbourAvoidanceRadius = 5f;
 
+	public GameObject explosionPrefab;
+	public GameObject explosionBigPrefab;
+
 	private UnityEngine.UI.Image healthBarLeft;
 	private UnityEngine.UI.Image healthBarRight;
 
@@ -82,9 +85,13 @@ public class PurpleBoss : BossEnemy
             {
 				healthState = 1;
             }
-			else
+			else if (health >= 0f)
             {
 				healthState = 2;
+            }
+			else
+            {
+				healthState = 3;
             }
 
 			attackTimer -= Time.deltaTime;
@@ -172,21 +179,6 @@ public class PurpleBoss : BossEnemy
 		yield return new WaitForFixedUpdate();
     }
 
-    void Explode()
-	{
-		ScoreManager.IncreaseScore(scoreValue);
-		Camera.main.GetComponent<CameraFollow>().AddNoise(10f);
-		Instantiate(explosion1, transform.position, transform.rotation);
-		Destroy(gameObject);
-	}
-
-	void ExplodeWithoutPowerup()
-	{
-		Camera.main.GetComponent<CameraFollow>().AddNoise(10f);
-		Instantiate(explosion1, transform.position, transform.rotation);
-		Destroy(gameObject);
-	}
-
 	private IEnumerator GlowRoutine() {
 		while (true) {
 			float emission = Mathf.Sin(Time.time * (Mathf.PI * 2f) * 0.4f) * 3f;
@@ -229,6 +221,40 @@ public class PurpleBoss : BossEnemy
 
 	private void EmitLaser() {
 		
+	}
+
+	protected override IEnumerator BossExplode()
+    {
+		int explosions = 32;
+		float timer = 0f;
+		while (explosions > 0)
+        {
+			timer -= Time.deltaTime;
+			if (timer <= 0f)
+            {
+				if (UnityEngine.Random.Range(0, 5) == 0)
+                {
+					Instantiate(explosionBigPrefab, transform.position + Vector3.Normalize(UnityEngine.Random.insideUnitSphere) * 5.5f, Quaternion.identity);
+					Camera.main.GetComponent<CameraFollow>().AddNoise(40f);
+				}
+				else
+                {
+					Instantiate(explosionPrefab, transform.position + Vector3.Normalize(UnityEngine.Random.insideUnitSphere) * 5.5f, Quaternion.identity);
+					Camera.main.GetComponent<CameraFollow>().AddNoise(6f);
+				}
+				StartCoroutine(FlashWhite());
+				explosions--;
+				timer += 0.25f;
+			}
+			yield return new WaitForFixedUpdate();
+		}
+		for (int i = 0; i < 6; i++)
+        {
+			Instantiate(explosionBigPrefab, transform.position + Vector3.Normalize(UnityEngine.Random.insideUnitSphere) * 4f, Quaternion.identity);
+		}
+		Camera.main.GetComponent<CameraFollow>().AddNoise(100f);
+		Destroy(gameObject);
+
 	}
 }
 

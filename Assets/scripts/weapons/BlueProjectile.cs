@@ -133,11 +133,11 @@ public class BlueProjectile : Projectile {
     {
 		if (other.gameObject.CompareTag("Enemy") && projectileMode == false)
         {
-            other.gameObject.GetComponent<Enemy>().getDamage(damage * 0.6f);
+            other.gameObject.GetComponent<Enemy>().getDamage(damage * 0.5f);
 			ExplodeSmall();
             if (other.GetComponent<Enemy>() is SmallEnemy)
             {
-                GameObject hitSpark = other.GetComponent<SmallEnemy>().SpawnHitSpark(transform.position, Quaternion.identity, damage * 0.6f, 30f);
+                GameObject hitSpark = other.GetComponent<SmallEnemy>().SpawnHitSpark(transform.position, Quaternion.identity, damage * 0.5f, 30f);
                 hitSpark.transform.right = other.transform.position - player.transform.position;
                 hitSpark.transform.rotation *= Quaternion.Euler(0f, 0f, -90f);
             }

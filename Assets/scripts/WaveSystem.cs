@@ -173,26 +173,38 @@ public class WaveSystem : MonoBehaviour {
 
         while (true) {
             //spawn initial enemies
-            for (int i = 0; i < waveEntries[waveNumber].InitialSpawns; i++) {
-                Spawn();
-            }
-            yield return new WaitForSeconds(waveEntries[waveNumber].SpawnRate);
 
-            //main spawn routine
-            while (enemyList.Count > 0) {
-                //if at maximum allowed active enemies, wait until enemy is destroyed
-                while (activeEnemies > waveEntries[waveNumber].MaxActiveEnemies) {
-                    yield return new WaitForEndOfFrame();
+            if (waveEntries[waveNumber].IsBossWave)
+            {
+                
+            }
+            else
+            {
+                for (int i = 0; i < waveEntries[waveNumber].InitialSpawns; i++)
+                {
+                    Spawn();
+                }
+                yield return new WaitForSeconds(waveEntries[waveNumber].SpawnRate);
+
+                //main spawn routine
+                while (enemyList.Count > 0)
+                {
+                    //if at maximum allowed active enemies, wait until enemy is destroyed
+                    while (activeEnemies > waveEntries[waveNumber].MaxActiveEnemies)
+                    {
+                        yield return new WaitForEndOfFrame();
+                    }
+
+                    Spawn();
+
+                    yield return new WaitForSeconds(waveEntries[waveNumber].SpawnRate);
                 }
 
-                Spawn();
-
-                yield return new WaitForSeconds(waveEntries[waveNumber].SpawnRate);
-            }
-
-            //stay until enemyList is reinitialized
-            while (enemyList.Count == 0) {
-                yield return new WaitForEndOfFrame();
+                //stay until enemyList is reinitialized
+                while (enemyList.Count == 0)
+                {
+                    yield return new WaitForEndOfFrame();
+                }
             }
 
             // brief wait before next wave
