@@ -56,7 +56,10 @@ public class Spawner : MonoBehaviour {
     }
 
     public void OnDrawGizmos() {
-        Gizmos.color = Color.yellow;
+        if (isGrounded)
+            Gizmos.color = Color.red;
+        else
+            Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, 0.4f);
     }
 }

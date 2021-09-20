@@ -9,21 +9,42 @@ public enum WeaponColor {Red, Orange, Yellow, Green, Blue, Purple};
 public class SaveManager : MonoBehaviour {
 
     public static SaveData saveData = new SaveData();
+    public bool overrideSaveData = false;
+    public bool useNewSaveData = false;
     string savePath;
 
 	// Use this for initialization
 	void Start () {
-        SaveManager.LoadSaveData(saveData);
+        if (overrideSaveData)
+        {
+            //debug save data
+        }
+
+        if (!useNewSaveData)
+        {
+            SaveManager.LoadSaveData(saveData);
+        }
 
         //print("SaveManager: levelsClearedOnNormal: ");
-        foreach (string level in saveData.levelsClearedOnNormal) {
-            //print(level);
-        }
+        //foreach (string level in saveData.levelsClearedOnNormal) {
+        //    print(level);
+        //}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+    public void Update()
+    {
+        print(saveData.weaponsUnlocked[0]);
+    }
+
+    public static void LoadSaveData(SaveData data)
+    {
+        if (File.Exists(Application.persistentDataPath + "/savedata.json"))
+        {
+            string newJson = File.ReadAllText(Application.persistentDataPath + "/savedata.json");
+            JsonUtility.FromJsonOverwrite(newJson, data);
+
+            print("file loaded");
+        }
     }
 
     public static void WriteToFile(SaveData data)
@@ -37,15 +58,6 @@ public class SaveManager : MonoBehaviour {
         print("file saved");
     }
 
-    public static void LoadSaveData(SaveData data)
-    {
-        if (File.Exists(Application.persistentDataPath + "/savedata.json")) {
-            string newJson = File.ReadAllText(Application.persistentDataPath + "/savedata.json");
-            JsonUtility.FromJsonOverwrite(newJson, data);
-
-            print("file loaded");
-        }
-    }
 
     public int[] GetSelectedWeapons(SaveData data) {
         int[] weaponsList = new int[6];
@@ -101,6 +113,12 @@ public class SaveManager : MonoBehaviour {
                 PlayerPrefs.SetInt("SelectedWeaponPurple", selection);
                 break;
         }
+    }
+
+    public static void UpdateHighScore(int index, int score)
+    {
+        saveData.scoresNormal[index] = score;
+        WriteToFile(saveData);
     }
 
     public static void DeleteSaveData()

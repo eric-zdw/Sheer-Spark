@@ -11,15 +11,30 @@ public class Menu : MonoBehaviour
 
     public UnityEngine.UI.Image darken;
 
+    private bool ruleStart = false;
+    private bool contentStart = false;
+
     // Start is called before the first frame update
     void Start()
+    {
+        InitializeFade();
+    }
+
+    void OnEnable()
+    {
+        InitializeFade();
+    }
+
+    void InitializeFade()
     {
         title.alpha = 0f;
         if (rule != null)
         {
             rule.fillAmount = 0f;
+            ruleStart = false;
         }
         content.alpha = 0f;
+        contentStart = false;
 
         StartCoroutine(FadeInTitle());
         if (darken != null)
@@ -37,13 +52,15 @@ public class Menu : MonoBehaviour
 
             if (title.alpha > 0.5f)
             {
-                if (rule != null) 
+                if (rule != null && !ruleStart) 
                 {
                     StartCoroutine(FadeInRule());
+                    ruleStart = true;
                 }
-                else
+                else if (rule == null && !contentStart)
                 {
                     StartCoroutine(FadeInContent());
+                    contentStart = true;
                 }
                 
             }
@@ -70,13 +87,14 @@ public class Menu : MonoBehaviour
     {
         while (rule.fillAmount < 1f)
         {
-            rule.fillAmount = Mathf.Lerp(rule.fillAmount, 1f, 0.001f);
-            if (rule.fillAmount > 0.95f)
+            rule.fillAmount = Mathf.Lerp(rule.fillAmount, 1f, 0.05f);
+            if (rule.fillAmount > 0.98f && !contentStart)
             {
                 StartCoroutine(FadeInContent());
+                contentStart = true;
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSecondsRealtime(0.005f);
         }
     }
 
@@ -84,7 +102,7 @@ public class Menu : MonoBehaviour
     {
         while (content.alpha < 1f)
         {
-            content.alpha += Time.deltaTime * 0.2f;
+            content.alpha += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
         content.alpha = 1f;

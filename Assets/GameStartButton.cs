@@ -15,6 +15,7 @@ public class GameStartButton : MonoBehaviour
     {
         
     }
+
     public void StartGame()
     {
         GameObject.FindGameObjectWithTag("WaveSystem").GetComponent<WaveSystem>().ActivatePlayer();
